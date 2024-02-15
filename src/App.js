@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Table } from './components/Table';
 import './App.css';
 
 function App() {
@@ -11,7 +12,6 @@ function App() {
     const handleWsOpen = () => ws.send('prices');
     const handleWsMessage = (pricesData) => {
       const pricesJson = JSON.parse(pricesData.data);
-      console.log({ prices: pricesJson.prices });
       setPrices(pricesJson.prices);
     };
 
@@ -29,11 +29,7 @@ function App() {
     <p>Loading...</p>
   ) : (
     <div>
-      {Object.entries(prices).map((crypto) => (
-        <p key={crypto[0]}>
-          <span>{`${crypto[0]} | bid: ${crypto[1].bid} - ask: ${crypto[1].ask}`}</span>
-        </p>
-      ))}
+      <Table prices={prices} />
     </div>
   );
 }
