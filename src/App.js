@@ -1,18 +1,40 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { SearchBar } from './components/SearchBar';
 import { Table } from './components/Table';
-import { filterPricesByValue, isObjectEmpty } from './utils/helpers';
+import { initialCryptoPrices } from './utils/api2';
+import {
+  filterPricesByValue,
+  isObjectEmpty,
+  updateCryptoPrices,
+} from './utils/helpers';
 import './App.css';
 
 function App() {
   const [prices, setPrices] = useState({});
   const [value, setValue] = useState('');
+  const [cryptoPrices, setCryptoPrices] = useState(initialCryptoPrices);
+  const interval = useRef();
+
+  useEffect(() => {
+    interval.current = setInterval(() => {
+      const updatedCryptoPrices = updateCryptoPrices(cryptoPrices);
+      setCryptoPrices((prevState) => ({
+        ...prevState,
+        ...updatedCryptoPrices,
+      }));
+    }, 3000);
+
+    return () => {
+      clearInterval(interval.current);
+    };
+  }, [cryptoPrices]);
 
   const filteredPrices = isObjectEmpty(prices)
     ? {}
     : filterPricesByValue(prices, value);
+  const filteredCryptoPrices = filterPricesByValue(cryptoPrices, value);
 
-  useEffect(() => {
+  /* useEffect(() => {
     const api = 'wss://wssx.gntapi.com:443';
     const ws = new WebSocket(api);
 
@@ -30,9 +52,9 @@ function App() {
       ws.removeEventListener('message', handleWsMessage);
       ws.close();
     };
-  }, []);
+  }, []); */
 
-  return isObjectEmpty(prices) ? (
+  return isObjectEmpty(cryptoPrices) ? (
     <p>Loading...</p>
   ) : (
     <main className="Main-container">
@@ -40,7 +62,7 @@ function App() {
         value={value}
         setValue={setValue}
       />
-      <Table prices={filteredPrices} />
+      <Table prices={filteredCryptoPrices} />
     </main>
   );
 }
