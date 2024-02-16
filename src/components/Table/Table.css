@@ -1,0 +1,86 @@
+.Table {
+  min-height: 300px;
+  min-width: 280px;
+  width: 80%;
+  max-width: 600px;
+  border-collapse: collapse;
+}
+
+.Table--container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 660px;
+}
+
+.Table--heading {
+  background-color: #122036;
+  text-align: end;
+}
+
+.Table--heading th {
+  padding: 1rem;
+}
+
+.Table--heading-name {
+  text-align: start;
+}
+
+.Table--row {
+  background-color: #122640;
+  text-align: end;
+  border: 1px solid #5d667b;
+  border-right: none;
+  border-left: none;
+}
+.Table--row:hover {
+  background-color: #122f4d;
+}
+.Table--row.up {
+  color: #00a68c;
+}
+.Table--row.down {
+  color: #d9475a;
+}
+
+.Table--row td {
+  padding: 1rem;
+}
+
+.Table--currency {
+  text-align: start;
+  font-weight: 600;
+}
+
+.Table--pagination-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.Table--pagination-button {
+  cursor: pointer;
+  border: 0;
+  padding: 8px;
+  background: none;
+  color: #ffffff;
+  border-radius: 12px;
+  min-width: 60px;
+}
+.Table--pagination-button:hover {
+  background-color: #C9CFDD;
+  color: #222222;
+}
+.Table--pagination-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.Table--pagination-text {
+  margin: 0;
+}
+
+.Table--pagination-text strong {
+  font-weight: 600;
+}
