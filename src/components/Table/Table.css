@@ -1,5 +1,4 @@
 .Table {
-  min-height: 300px;
   min-width: 280px;
   width: 80%;
   max-width: 600px;
@@ -37,11 +36,17 @@
 .Table--row:hover {
   background-color: #122f4d;
 }
-.Table--row.up {
-  color: #00a68c;
+
+.Table--row td.bullish,
+.Table--row td.bearish {
+  font-weight: 500;
 }
-.Table--row.down {
-  color: #d9475a;
+
+.Table--row td.bullish {
+  color: #00d3b2;
+}
+.Table--row td.bearish {
+  color: #ff919f;
 }
 
 .Table--row td {
@@ -69,7 +74,7 @@
   min-width: 60px;
 }
 .Table--pagination-button:hover {
-  background-color: #C9CFDD;
+  background-color: #c9cfdd;
   color: #222222;
 }
 .Table--pagination-button:disabled {
