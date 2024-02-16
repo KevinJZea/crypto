@@ -1,3 +1,5 @@
+import { MOVEMENTS } from './constants';
+
 export function filterPricesByValue(prices, value) {
   const filteredPrices = {};
 
@@ -43,4 +45,22 @@ export const updateCryptoPrices = (cryptoPrices) => {
   }
 
   return updatedCryptoPrices;
+};
+
+export const updatePricesMovements = (
+  previousPrices,
+  prices,
+  previousMovements
+) => {
+  const updatedPricesMovements = { ...previousMovements };
+
+  for (const currency in prices) {
+    if (prices[currency].bid > previousPrices[currency].bid) {
+      updatedPricesMovements[currency] = MOVEMENTS.UPWARD;
+    } else if (prices[currency].bid < previousPrices[currency].bid) {
+      updatedPricesMovements[currency] = MOVEMENTS.DOWNWARD;
+    }
+  }
+
+  return updatedPricesMovements;
 };
