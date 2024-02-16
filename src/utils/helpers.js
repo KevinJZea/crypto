@@ -55,7 +55,9 @@ export const updatePricesMovements = (
   const updatedPricesMovements = { ...previousMovements };
 
   for (const currency in prices) {
-    if (prices[currency].bid > previousPrices[currency].bid) {
+    if (!previousPrices[currency]) {
+      updatedPricesMovements[currency] = MOVEMENTS.SIDEWAYS;
+    } else if (prices[currency].bid > previousPrices[currency].bid) {
       updatedPricesMovements[currency] = MOVEMENTS.UPWARD;
     } else if (prices[currency].bid < previousPrices[currency].bid) {
       updatedPricesMovements[currency] = MOVEMENTS.DOWNWARD;
