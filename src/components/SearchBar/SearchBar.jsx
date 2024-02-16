@@ -20,7 +20,7 @@ export const SearchBar = ({ value, setValue }) => {
         className="SearchBar"
         placeholder="Currency"
         ref={input}
-        type="text"
+        type="search"
         value={value}
         onChange={handleChange}
       />
