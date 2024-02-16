@@ -14,7 +14,7 @@
 }
 
 .Table--heading {
-  background-color: #122036;
+  background-color: hsl(217, 50%, 14%);
   text-align: end;
 }
 
@@ -27,14 +27,14 @@
 }
 
 .Table--row {
-  background-color: #122640;
+  background-color: hsl(214, 56%, 16%);
   text-align: end;
-  border: 1px solid #5d667b;
+  border: 1px solid hsl(222, 14%, 42%);
   border-right: none;
   border-left: none;
 }
 .Table--row:hover {
-  background-color: #122f4d;
+  background-color: hsl(211, 62%, 19%);
 }
 
 .Table--row td.bullish,
@@ -43,10 +43,10 @@
 }
 
 .Table--row td.bullish {
-  color: #00d3b2;
+  color: hsl(171, 100%, 41%);
 }
 .Table--row td.bearish {
-  color: #ff919f;
+  color: hsl(352, 100%, 78%);
 }
 
 .Table--row td {
@@ -69,13 +69,13 @@
   border: 0;
   padding: 8px;
   background: none;
-  color: #ffffff;
+  color: var(--white);
   border-radius: 12px;
   min-width: 60px;
 }
 .Table--pagination-button:hover {
-  background-color: #c9cfdd;
-  color: #222222;
+  background-color: hsl(222, 23%, 83%);
+  color: hsl(0, 0%, 13%);
 }
 .Table--pagination-button:disabled {
   cursor: not-allowed;

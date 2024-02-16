@@ -1,3 +1,7 @@
+:root {
+  --white: hsl(0, 0%, 100%);
+}
+
 * {
   box-sizing: border-box;
 }
@@ -9,8 +13,8 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #12192b;
-  color: #ffffff;
+  background-color: hsl(223, 40%, 12%);
+  color: var(--white);
 }
 
 code {
