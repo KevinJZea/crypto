@@ -8,10 +8,19 @@
   border: none;
   border-radius: 12px;
   color: #ffffff;
-  padding: 8px 12px;
+  padding: 10px 16px;
+  font-size: 1rem;
 }
 
 .SearchBar::placeholder {
   color: #ffffff;
   opacity: 0.5;
+}
+
+.SearchBar:hover {
+  box-shadow: 0 2px 6px rgba(25, 52, 133, 0.28);
+}
+
+.SearchBar--text {
+  text-align: center;
 }

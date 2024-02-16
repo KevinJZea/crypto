@@ -1,18 +1,25 @@
 import { useEffect, useState } from 'react';
+import { SearchBar } from './components/SearchBar';
 import { Table } from './components/Table';
+import { filterPricesByValue, isObjectEmpty } from './utils/helpers';
 import './App.css';
 
 function App() {
   const [prices, setPrices] = useState({});
+  const [value, setValue] = useState('');
+
+  const filteredPrices = isObjectEmpty(prices)
+    ? {}
+    : filterPricesByValue(prices, value);
 
   useEffect(() => {
     const api = 'wss://wssx.gntapi.com:443';
     const ws = new WebSocket(api);
 
     const handleWsOpen = () => ws.send('prices');
-    const handleWsMessage = (pricesData) => {
-      const pricesJson = JSON.parse(pricesData.data);
-      setPrices(pricesJson.prices);
+    const handleWsMessage = ({ data }) => {
+      const pricesData = JSON.parse(data);
+      setPrices(pricesData.prices);
     };
 
     ws.addEventListener('open', handleWsOpen);
@@ -25,12 +32,16 @@ function App() {
     };
   }, []);
 
-  return Object.keys(prices).length === 0 ? (
+  return isObjectEmpty(prices) ? (
     <p>Loading...</p>
   ) : (
-    <div>
-      <Table prices={prices} />
-    </div>
+    <main className="Main-container">
+      <SearchBar
+        value={value}
+        setValue={setValue}
+      />
+      <Table prices={filteredPrices} />
+    </main>
   );
 }
 

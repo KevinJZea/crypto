@@ -15,7 +15,7 @@ export const SearchBar = ({ value, setValue }) => {
       className="SearchBar--container"
       onSubmit={handleSubmit}
     >
-      <p>Type to filter the currencies</p>
+      <p className="SearchBar--text">Type to filter the currencies</p>
       <input
         className="SearchBar"
         placeholder="Currency"
