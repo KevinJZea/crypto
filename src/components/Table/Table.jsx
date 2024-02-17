@@ -1,8 +1,10 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { updatePricesMovements } from '../../utils/helpers';
 import './Table.css';
 
 export const Table = ({ prices }) => {
+  const previousPageButton = useRef(null);
+  const nextPageButton = useRef(null);
   const previousPrices = useRef(null);
   const previousMovements = useRef({});
 
@@ -30,8 +32,20 @@ export const Table = ({ prices }) => {
   };
 
   const handlePageChange = (newPage) => {
+    if (newPage === 1) {
+      nextPageButton.current.focus({ focusVisible: true });
+    } else if (newPage === totalPages) {
+      previousPageButton.current.focus({ focusVisible: true });
+    }
+
     setCurrentPage(newPage);
   };
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(totalPages);
+    }
+  }, [totalPages]);
 
   return (
     <div className="Table--container">
@@ -64,7 +78,8 @@ export const Table = ({ prices }) => {
         <button
           className="Table--pagination-button"
           disabled={currentPage === 1}
-          onClick={() => handlePageChange((prevPage) => prevPage - 1)}
+          ref={previousPageButton}
+          onClick={() => handlePageChange(currentPage - 1)}
         >
           Previous
         </button>
@@ -73,8 +88,9 @@ export const Table = ({ prices }) => {
         </p>
         <button
           className="Table--pagination-button"
-          disabled={endIndex >= Object.keys(prices).length}
-          onClick={() => handlePageChange((prevPage) => prevPage + 1)}
+          disabled={currentPage === totalPages}
+          ref={nextPageButton}
+          onClick={() => handlePageChange(currentPage + 1)}
         >
           Next
         </button>
