@@ -1,8 +1,14 @@
 .Main-container {
   min-height: 100vh;
-  padding-top: 20px;
+  padding: 20px 0 40px;
   display: flex;
   flex-direction: column;
+}
+
+.LoadingText {
+  text-align: center;
+  font-size: 3rem;
+  margin: auto 0;
 }
 
 .ApiToggle {
@@ -19,4 +25,10 @@
 .ApiToggle:hover {
   background-color: var(--white);
   color: hsl(0, 0%, 0%);
+}
+
+.NoResultsText {
+  text-align: center;
+  font-size: 2rem;
+  margin-top: 40%;
 }

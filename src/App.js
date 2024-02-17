@@ -73,23 +73,33 @@ function App() {
     };
   }, [currentApi]);
 
-  return isObjectEmpty(prices) ? (
-    <p>Loading...</p>
-  ) : (
+  return (
     <main className="Main-container">
-      <SearchBar
-        value={value}
-        setValue={setValue}
-      />
-      <button
-        className="ApiToggle"
-        type="button"
-        onClick={toggleApi}
-      >
-        Change to {currentApi === APIS.WS_API ? 'Crypto Local' : 'WebSocket'}{' '}
-        API
-      </button>
-      <Table prices={filteredPrices} />
+      {isObjectEmpty(prices) ? (
+        <h2 className="LoadingText">Loading...</h2>
+      ) : (
+        <>
+          <SearchBar
+            value={value}
+            setValue={setValue}
+          />
+          <button
+            className="ApiToggle"
+            type="button"
+            onClick={toggleApi}
+          >
+            Change to{' '}
+            {currentApi === APIS.WS_API ? 'Crypto Local' : 'WebSocket'} API
+          </button>
+          {isObjectEmpty(filteredPrices) ? (
+            <h2 className="NoResultsText">
+              Sorry! 😥 <br /> No matches for '{value}'
+            </h2>
+          ) : (
+            <Table prices={filteredPrices} />
+          )}
+        </>
+      )}
     </main>
   );
 }
